@@ -1,0 +1,52 @@
+{
+  "@context": {
+    "schema": "https://schema.org/",
+    "hokudai": "https://www.global.hokudai.ac.jp/vocab#",
+    "name": "schema:name",
+    "url": "schema:url",
+    "description": "schema:description",
+    "foundingDate": "schema:foundingDate",
+    "location": "schema:location",
+    "sameAs": "schema:sameAs",
+    "institution": {
+      "@id": "schema:CollegeOrUniversity",
+      "@type": "@id"
+    },
+    "repository": {
+      "@id": "hokudai:repository",
+      "@type": "@id"
+    },
+    "Repository": "schema:DigitalDocument",
+    "Sitemap": "hokudai:Sitemap",
+    "RepositoryItem": {
+      "@id": "hokudai:RepositoryItem",
+      "@type": "schema:ScholarlyArticle"
+    },
+    "handle": "hokudai:handle",
+    "doi": "schema:identifier",
+    "loc": {
+      "@id": "hokudai:loc",
+      "@type": "@id"
+    },
+    "lastmod": {
+      "@id": "schema:dateModified",
+      "@type": "schema:DateTime"
+    }
+  },
+  "@type": "CollegeOrUniversity",
+  "name": "Hokkaido University",
+  "url": "https://www.global.hokudai.ac.jp/",
+  "description": "National research university in Sapporo, Japan, founded in 1876 as Sapporo Agricultural College. Its open developer footprint is centered on the HUSCAP institutional repository and public XML sitemaps.",
+  "foundingDate": "1876",
+  "location": "Sapporo, Hokkaido, Japan",
+  "sameAs": [
+    "https://www.linkedin.com/school/hokkaidouni/",
+    "https://eprints.lib.hokudai.ac.jp/"
+  ],
+  "repository": {
+    "@type": "Repository",
+    "name": "HUSCAP (Hokkaido University Collection of Scholarly and Academic Papers)",
+    "url": "https://eprints.lib.hokudai.ac.jp/",
+    "description": "Open-access institutional repository of journal articles, conference materials, doctoral dissertations, and research data exposing JPCOAR-compliant metadata."
+  }
+}
