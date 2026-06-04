@@ -1,0 +1,78 @@
+---
+aid: hokkaido
+name: Hokkaido University
+description: >-
+  Hokkaido University (北海道大学) is a national research university in Sapporo,
+  Japan, founded in 1876 as Sapporo Agricultural College and ranked #173 in the
+  QS World University Rankings 2025. It operates 12 undergraduate schools, 21
+  graduate schools, and numerous research institutes. Its public, machine-readable
+  developer footprint is limited and centered on scholarly infrastructure: the
+  HUSCAP institutional repository (Hokkaido University Collection of Scholarly and
+  Academic Papers) and public XML sitemaps. The university does not publish a
+  dedicated developer portal or documented public REST API; most institutional
+  systems (ELMS LMS, syllabus search, researcher directory) are web UIs without
+  documented programmatic access.
+type: Index
+position: Consumer
+access: 3rd-Party
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/hokkaido/refs/heads/main/apis.yml
+tags:
+  - Education
+  - Higher Education
+  - University
+  - Research
+  - Open Access
+  - Institutional Repository
+  - Japan
+created: '2026-06-03'
+modified: '2026-06-03'
+specificationVersion: '0.19'
+apis:
+  - aid: hokkaido:huscap
+    name: HUSCAP Institutional Repository
+    description: >-
+      HUSCAP (Hokkaido University Collection of Scholarly and Academic Papers) is
+      the university's open-access institutional repository of journal articles,
+      conference materials, doctoral dissertations, and research data. It exposes
+      JPCOAR-compliant metadata and persistent identifiers (Handle, DOI). The
+      repository migrated to a new platform in December 2025; the legacy DSpace
+      OAI-PMH harvesting endpoint at /dspace-oai/request no longer resolves and a
+      replacement OAI-PMH base URL for the new system was not publicly confirmed
+      at the time of review.
+    humanURL: https://eprints.lib.hokudai.ac.jp/
+    baseURL: https://eprints.lib.hokudai.ac.jp/
+    tags: [ Institutional Repository, Open Access, OAI-PMH, Research, Metadata, JPCOAR ]
+    properties:
+      - type: Documentation
+        url: https://eprints.lib.hokudai.ac.jp/
+      - type: Website
+        url: https://www.global.hokudai.ac.jp/research-and-education/find-an-academic-paper-huscap/
+  - aid: hokkaido:huscap-sitemap
+    name: HUSCAP XML Sitemaps
+    description: >-
+      Publicly crawlable XML sitemap index for the HUSCAP repository, providing a
+      machine-readable list of repository item URLs. This is an open, robots.txt-
+      permitted endpoint usable for programmatic discovery of repository records.
+    humanURL: https://eprints.lib.hokudai.ac.jp/sitemap/sitemapindex.xml
+    baseURL: https://eprints.lib.hokudai.ac.jp/sitemap/sitemapindex.xml
+    tags: [ Sitemap, XML, Discovery, Open Access ]
+    properties:
+      - type: Documentation
+        url: https://eprints.lib.hokudai.ac.jp/sitemap/sitemapindex.xml
+common:
+  - type: Website
+    url: https://www.global.hokudai.ac.jp/
+  - type: LinkedIn
+    url: https://www.linkedin.com/school/hokkaidouni/
+  - type: Plans
+    url: plans/hokkaido-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/hokkaido-rate-limits.yml
+  - type: FinOps
+    url: finops/hokkaido-finops.yml
+  - type: Review
+    url: review.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
