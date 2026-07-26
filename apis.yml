@@ -1,4 +1,3 @@
----
 aid: hokkaido
 name: Hokkaido University
 description: >-
@@ -13,9 +12,21 @@ description: >-
   systems (ELMS LMS, syllabus search, researcher directory) are web UIs without
   documented programmatic access.
 type: Index
+accessModel:
+  pricing: free
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Free
+  confidence: medium
+  source:
+    - plans
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/hokkaido.png
 url: https://raw.githubusercontent.com/api-evangelist/hokkaido/refs/heads/main/apis.yml
 tags:
   - Education
@@ -26,28 +37,9 @@ tags:
   - Institutional Repository
   - Japan
 created: '2026-06-03'
-modified: '2026-06-03'
+modified: '2026-07-25'
 specificationVersion: '0.19'
 apis:
-  - aid: hokkaido:huscap
-    name: HUSCAP Institutional Repository
-    description: >-
-      HUSCAP (Hokkaido University Collection of Scholarly and Academic Papers) is
-      the university's open-access institutional repository of journal articles,
-      conference materials, doctoral dissertations, and research data. It exposes
-      JPCOAR-compliant metadata and persistent identifiers (Handle, DOI). The
-      repository migrated to a new platform in December 2025; the legacy DSpace
-      OAI-PMH harvesting endpoint at /dspace-oai/request no longer resolves and a
-      replacement OAI-PMH base URL for the new system was not publicly confirmed
-      at the time of review.
-    humanURL: https://eprints.lib.hokudai.ac.jp/
-    baseURL: https://eprints.lib.hokudai.ac.jp/
-    tags: [ Institutional Repository, Open Access, OAI-PMH, Research, Metadata, JPCOAR ]
-    properties:
-      - type: Documentation
-        url: https://eprints.lib.hokudai.ac.jp/
-      - type: Website
-        url: https://www.global.hokudai.ac.jp/research-and-education/find-an-academic-paper-huscap/
   - aid: hokkaido:huscap-sitemap
     name: HUSCAP XML Sitemaps
     description: >-
@@ -56,7 +48,7 @@ apis:
       permitted endpoint usable for programmatic discovery of repository records.
     humanURL: https://eprints.lib.hokudai.ac.jp/sitemap/sitemapindex.xml
     baseURL: https://eprints.lib.hokudai.ac.jp/sitemap/sitemapindex.xml
-    tags: [ Sitemap, XML, Discovery, Open Access ]
+    tags: [Sitemap, XML, Discovery, Open Access]
     properties:
       - type: Documentation
         url: https://eprints.lib.hokudai.ac.jp/sitemap/sitemapindex.xml
@@ -75,6 +67,8 @@ common:
     url: finops/hokkaido-finops.yml
   - type: Review
     url: review.yml
+  - type: ProductPage
+    url: https://eprints.lib.hokudai.ac.jp/
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
