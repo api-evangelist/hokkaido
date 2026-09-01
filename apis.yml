@@ -1,16 +1,24 @@
 aid: hokkaido
 name: Hokkaido University
+x-type: university
+x-category: Public Research University
 description: >-
-  Hokkaido University (北海道大学) is a national research university in Sapporo,
-  Japan, founded in 1876 as Sapporo Agricultural College and ranked #173 in the
-  QS World University Rankings 2025. It operates 12 undergraduate schools, 21
-  graduate schools, and numerous research institutes. Its public, machine-readable
-  developer footprint is limited and centered on scholarly infrastructure: the
-  HUSCAP institutional repository (Hokkaido University Collection of Scholarly and
-  Academic Papers) and public XML sitemaps. The university does not publish a
-  dedicated developer portal or documented public REST API; most institutional
-  systems (ELMS LMS, syllabus search, researcher directory) are web UIs without
-  documented programmatic access.
+  Hokkaido University (北海道大学) is a national research university in Sapporo, Japan,
+  founded in 1876 as Sapporo Agricultural College, a member of Japan's Designated
+  National University group and ranked #173 in the QS World University Rankings 2025.
+  It operates 12 undergraduate schools, 21 graduate schools and numerous research
+  institutes. Its public programmable footprint is small and honest: the university
+  publishes no developer portal, no API gateway and no documented public REST API —
+  api., data., opendata., developer. and status.hokudai.ac.jp all fail to resolve, and
+  the WordPress REST API on its English site is explicitly disabled. What it does
+  operate, and what this profile is built on, is scholarly identity infrastructure. It
+  runs its own SAML 2.0 / Shibboleth identity provider registered in GakuNin, the
+  Japanese national academic access federation; it holds Handle System prefix 2115 and
+  JaLC DOI prefix 10.14943 for the HUSCAP institutional repository; and it publishes
+  crawlable XML sitemaps for both HUSCAP and its main web estate. HUSCAP's OAI-PMH
+  endpoint is the one real regression: IRDB still harvests the repository by OAI-PMH,
+  but no base URL has been publicly documented since the December 2025 platform
+  migration and eighteen candidate paths were probed unsuccessfully.
 type: Index
 deliveryModel:
   model: saas
@@ -43,33 +51,196 @@ tags:
   - Education
   - Higher Education
   - University
+  - Japan
+  - National University
   - Research
   - Open Access
   - Institutional Repository
-  - Japan
+  - Identity Federation
+  - Shibboleth
+  - Research Computing
+  - Course Catalog
+  - Persistent Identifiers
 created: '2026-06-03'
-modified: '2026-07-25'
+modified: '2026-09-01'
 specificationVersion: '0.23'
 apis:
+  - aid: hokkaido:saml-idp
+    name: Hokkaido University SAML 2.0 Identity Provider
+    x-operator: institution
+    description: >-
+      Hokkaido University's own Shibboleth/SAML 2.0 identity provider, entityID
+      https://shib-idp01.iic.hokudai.ac.jp/idp/shibboleth, scope hokudai.ac.jp,
+      registered in the GakuNin national academic federation since 2010-03-16. The
+      SAML metadata document is served from the university's own host and the signing
+      certificate is issued to O=Hokkaido University by the NII Open Domain CA. This is
+      the strongest institution-operated machine-readable surface the university has.
+    humanURL: https://www.iic.hokudai.ac.jp/
+    baseURL: https://aidipigakunin2.oicte.hokudai.ac.jp/saml/saml2/idp/metadata.php
+    tags: [Identity Federation, SAML, Shibboleth, GakuNin, Authentication]
+    properties:
+      - type: Authentication
+        url: authentication/hokkaido-saml-idp.yml
+      - type: Conformance
+        url: conformance/hokkaido-conformance.yml
+  - aid: hokkaido:gakunin
+    name: GakuNin Academic Access Management Federation
+    x-operator: federation
+    description: >-
+      Membership of GakuNin (学術認証フェデレーション), the Japanese national academic identity
+      federation operated by the National Institute of Informatics. The aggregate at
+      metadata.gakunin.nii.ac.jp carries 650 entities, four of them Hokkaido
+      University's — one identity provider and three service providers (RISS, WeBWorK,
+      MDS Platform), all on hokudai.ac.jp hosts. Recorded as a relationship: the
+      federation aggregate is NII's document, shared by definition, and the identity
+      provider behind Hokkaido's entry is the university's own.
+    humanURL: https://www.gakunin.jp/
+    baseURL: https://metadata.gakunin.nii.ac.jp/gakunin-metadata.xml
+    tags: [Identity Federation, SAML, Metadata, GakuNin, Japan]
+    properties:
+      - type: Authentication
+        url: authentication/hokkaido-saml-idp.yml
   - aid: hokkaido:huscap-sitemap
     name: HUSCAP XML Sitemaps
+    x-operator: institution
     description: >-
-      Publicly crawlable XML sitemap index for the HUSCAP repository, providing a
-      machine-readable list of repository item URLs. This is an open, robots.txt-
-      permitted endpoint usable for programmatic discovery of repository records.
-    humanURL: https://eprints.lib.hokudai.ac.jp/sitemap/sitemapindex.xml
+      Publicly crawlable XML sitemap index for HUSCAP, the Hokkaido University
+      Collection of Scholarly and Academic Papers, providing a machine-readable list of
+      repository item URLs across seven child sitemaps refreshed daily. Explicitly
+      permitted by the repository's robots.txt, which otherwise disallows crawling.
+      The only machine-readable interface HUSCAP currently offers.
+    humanURL: https://eprints.lib.hokudai.ac.jp/
     baseURL: https://eprints.lib.hokudai.ac.jp/sitemap/sitemapindex.xml
-    tags: [Sitemap, XML, Discovery, Open Access]
+    tags: [Sitemap, XML, Discovery, Open Access, Research Repository]
     properties:
       - type: Documentation
-        url: https://eprints.lib.hokudai.ac.jp/sitemap/sitemapindex.xml
+        url: https://www.lib.hokudai.ac.jp/support/huscap/
+      - type: RobotsTxt
+        url: https://eprints.lib.hokudai.ac.jp/robots.txt
+  - aid: hokkaido:web-sitemaps
+    name: Hokkaido University Web Sitemaps
+    x-operator: institution
+    description: >-
+      XML sitemaps for the university's two public web estates — the 2.4 MB
+      sitemap.xml on the Japanese site and the WordPress core sitemap index on the
+      English global site. Machine-readable and institution-operated, though the
+      WordPress REST API behind the English site is explicitly disabled and returns
+      {"code":"rest_disabled"}.
+    humanURL: https://www.hokudai.ac.jp/
+    baseURL: https://www.hokudai.ac.jp/sitemap.xml
+    tags: [Sitemap, XML, Discovery, Website]
+    properties:
+      - type: Sitemap
+        url: https://www.global.hokudai.ac.jp/wp-sitemap.xml
+  - aid: hokkaido:handle-2115
+    name: Handle System Prefix 2115
+    x-operator: registry
+    description: >-
+      Hokkaido University Library holds Handle System naming authority prefix 2115,
+      which mints the persistent identifiers on every HUSCAP record (hdl.handle.net/2115/…).
+      Registered since 2005 and administratively current — the naming-authority record
+      carries contact addresses at lib.hokudai.ac.jp, most recently updated 2024-06-24.
+      Recorded as a registry membership: the Handle System's own contract belongs to the
+      DONA Foundation, the registration is a fact about Hokkaido University.
+    humanURL: https://hdl.handle.net/2115/301
+    baseURL: https://hdl.handle.net/api/handles/0.NA/2115
+    tags: [Persistent Identifiers, Handle, Registry, Research Repository]
+  - aid: hokkaido:jalc-doi-10-14943
+    name: JaLC DOI Prefix 10.14943
+    x-operator: registry
+    description: >-
+      Hokkaido University registers DOIs through JaLC, the Japan Link Center, under
+      prefix 10.14943. Confirmed from the DOI Registration Agency resolver
+      (doi.org/doiRA/10.14943 returns RA "JaLC"), from the Handle naming-authority
+      record for 10.14943 which delegates to service 10.SERV/JALC, and from the JaLC
+      DOI API, which returns publisher_list "Hokkaido University" / "北海道大学" for a
+      live HUSCAP DOI. The university library states explicitly that HUSCAP mints JaLC
+      DOIs and cannot mint DataCite or Crossref DOIs.
+    humanURL: https://www.lib.hokudai.ac.jp/support/huscap_doi/
+    baseURL: https://api.japanlinkcenter.org/dois/10.14943/bfhhs.165.l129
+    tags: [Persistent Identifiers, DOI, JaLC, Registry, Open Access]
+    properties:
+      - type: Conformance
+        url: conformance/hokkaido-conformance.yml
+  - aid: hokkaido:ror
+    name: ROR Registry Record
+    x-operator: registry
+    description: >-
+      Research Organization Registry record https://ror.org/02e16g702, types education
+      and funder, established 1876, located Sapporo, Japan. Carries the university's
+      cross-registry identifiers — Crossref Funder ID 501100005946, GRID grid.39158.36,
+      ISNI 0000 0001 2173 7691, Wikidata Q1057199. Recorded as a registry membership;
+      the ROR API contract is ROR's.
+    humanURL: https://ror.org/02e16g702
+    baseURL: https://api.ror.org/organizations/https%3A%2F%2Fror.org%2F02e16g702
+    tags: [Registry, Identifiers, ROR, Research]
+  - aid: hokkaido:crossref-5618
+    name: Crossref Member 5618 — Department of Mathematics
+    x-operator: registry
+    description: >-
+      Crossref membership held at department level, not institution level. Member 5618,
+      "Department of Mathematics, Hokkaido University", prefix 10.14492, 1,820
+      registered DOIs. Recorded because it is real and current, and scoped precisely
+      because the institutional repository explicitly does not mint Crossref DOIs.
+    humanURL: https://www.math.sci.hokudai.ac.jp/
+    baseURL: https://api.crossref.org/members/5618
+    tags: [Registry, Identifiers, Crossref, DOI, Research]
+  - aid: hokkaido:syllabus
+    name: Hokkaido University Syllabus Search (学務システム)
+    x-operator: institution
+    description: >-
+      Public course catalog and syllabus search, institution-operated on the
+      gakumu.academic.hokudai.ac.jp host. Live and open to the public, but web-only —
+      an ASP.NET WebForms application with no documented programmatic interface, no
+      sitemap and no machine-readable course export. The older
+      syllabus01.academic.hokudai.ac.jp system it replaced no longer resolves. Recorded
+      as a surface class the institution genuinely runs, with the absence of a
+      machine-readable contract stated rather than implied.
+    humanURL: https://gakumu.academic.hokudai.ac.jp/Portal/Public/Syllabus/SearchMain.aspx
+    tags: [Course Catalog, Syllabus, Registrar, Web Only]
+  - aid: hokkaido:hucc
+    name: Interdisciplinary Large-scale Computing System (HUCC)
+    x-operator: institution
+    description: >-
+      The Information Initiative Center's supercomputer and research cloud service —
+      Grand Chariot 2 and the research cloud system — documented in Japanese and
+      English with a published application and allocation process. Institution-operated
+      research computing. No service catalog API, allocation API or job-submission API
+      is publicly documented; access is applied for through a user portal that requires
+      institutional affiliation.
+    humanURL: https://www.hucc.hokudai.ac.jp/en/overview/ilcs/
+    tags: [Research Computing, HPC, Supercomputing, Web Only]
 common:
-  - type: DomainSecurity
-    url: security/hokkaido-domain-security.yml
   - type: Website
-    url: https://www.global.hokudai.ac.jp/
+    url: https://www.hokudai.ac.jp/
+  - type: About
+    url: https://www.global.hokudai.ac.jp/about/
+  - type: ResearchRepository
+    url: https://eprints.lib.hokudai.ac.jp/
+  - type: LibraryCatalog
+    url: https://www.lib.hokudai.ac.jp/
+  - type: CourseCatalog
+    url: https://gakumu.academic.hokudai.ac.jp/Portal/Public/Syllabus/SearchMain.aspx
+  - type: IdentityFederation
+    url: https://aidipigakunin2.oicte.hokudai.ac.jp/saml/saml2/idp/metadata.php
+  - type: ResearchComputing
+    url: https://www.hucc.hokudai.ac.jp/en/overview/ilcs/
+  - type: AIPolicy
+    url: https://www.open-ed.hokudai.ac.jp/%E6%9C%AA%E5%88%86%E9%A1%9E/31-3.html
+  - type: PrivacyPolicy
+    url: https://www.global.hokudai.ac.jp/privacy-policy/
+  - type: Support
+    url: https://www.lib.hokudai.ac.jp/support/huscap/
   - type: LinkedIn
     url: https://www.linkedin.com/school/hokkaidouni/
+  - type: Authentication
+    url: authentication/hokkaido-saml-idp.yml
+  - type: Conformance
+    url: conformance/hokkaido-conformance.yml
+  - type: JSONLD
+    url: json-ld/hokkaido-context.jsonld
+  - type: DomainSecurity
+    url: security/hokkaido-domain-security.yml
   - type: Plans
     url: plans/hokkaido-plans-pricing.yml
   - type: RateLimits
@@ -80,6 +251,104 @@ common:
     url: review.yml
   - type: ProductPage
     url: https://eprints.lib.hokudai.ac.jp/
+x-coverage:
+  state: covered
+  reason: covered
+  generated: '2026-09-01'
+  method: probed
+  detail: >-
+    Every surface class the university pipeline hunts was probed live on 2026-09-01 and
+    the result is a thin but complete and honest profile. Hokkaido University publishes
+    no public REST API, no developer portal and no API gateway: api., data., opendata.,
+    developer. and status.hokudai.ac.jp do not resolve, /llms.txt, /.well-known/apis.json,
+    /.well-known/security.txt and /.well-known/openid-configuration all 404, and the
+    WordPress REST API on the English global site answers {"code":"rest_disabled"}. What
+    the institution genuinely operates is scholarly identity infrastructure, and that is
+    what this profile now records. Its own SAML 2.0 / Shibboleth identity provider is
+    registered in GakuNin as PI0008JP with scope hokudai.ac.jp, serves its metadata from
+    a hokudai.ac.jp host under a certificate issued to O=Hokkaido University, and answers
+    on its advertised SSO endpoint — the strongest institution-operated surface here and
+    one the June 2026 profile missed entirely. Three further hokudai.ac.jp SAML service
+    providers are registered alongside it. Persistent-identifier registrations were
+    verified from the registries themselves rather than from university prose: Handle
+    naming authority 2115, administered from lib.hokudai.ac.jp and updated 2024-06-24,
+    and JaLC DOI prefix 10.14943, confirmed through the DOI RA resolver and the JaLC API
+    which names Hokkaido University as publisher. The university is NOT a DataCite member
+    — api.datacite.org returns zero clients and the library states the position
+    explicitly — and its only Crossref membership is departmental (member 5618,
+    Department of Mathematics, prefix 10.14492). The one real regression is OAI-PMH: IRDB
+    entry 524 still harvests HUSCAP, so a base URL exists, but the legacy DSpace endpoint
+    has 404ed since the December 2025 platform migration and eighteen candidate paths on
+    the replacement platform were probed without success. No vendor contract was saved
+    under this institution's name, and none was found to remove — the repo carried no
+    OpenAPI at all before this run.
+  evidence:
+    - url: https://metadata.gakunin.nii.ac.jp/gakunin-metadata.xml
+      status: 200
+    - url: https://aidipigakunin2.oicte.hokudai.ac.jp/saml/saml2/idp/metadata.php
+      status: 200
+    - url: https://aidipigakunin2.oicte.hokudai.ac.jp/saml/saml2/idp/SSOService.php
+      status: 200
+    - url: https://hdl.handle.net/api/handles/0.NA/2115
+      status: 200
+    - url: https://hdl.handle.net/api/handles/2115/301
+      status: 200
+    - url: https://api.japanlinkcenter.org/dois/10.14943/bfhhs.165.l129
+      status: 200
+    - url: https://api.ror.org/organizations/https%3A%2F%2Fror.org%2F02e16g702
+      status: 200
+    - url: https://api.crossref.org/members/5618
+      status: 200
+    - url: https://api.datacite.org/clients?query=hokkaido
+      status: 200
+    - url: https://eprints.lib.hokudai.ac.jp/sitemap/sitemapindex.xml
+      status: 200
+    - url: https://eprints.lib.hokudai.ac.jp/robots.txt
+      status: 200
+    - url: https://eprints.lib.hokudai.ac.jp/dspace-oai/request?verb=Identify
+      status: 404
+    - url: https://eprints.lib.hokudai.ac.jp/repo/huscap/all/oai?verb=Identify
+      status: 404
+    - url: https://irdb.nii.ac.jp/repositorylist?page=10
+      status: 200
+    - url: https://www.hokudai.ac.jp/sitemap.xml
+      status: 200
+    - url: https://www.global.hokudai.ac.jp/wp-sitemap.xml
+      status: 200
+    - url: https://www.global.hokudai.ac.jp/wp-json/
+      status: 500
+    - url: https://gakumu.academic.hokudai.ac.jp/Portal/Public/Syllabus/SearchMain.aspx
+      status: 200
+    - url: https://syllabus01.academic.hokudai.ac.jp/syllabi/public/syllabus/sylsearch.aspx
+      status: 0
+    - url: https://www.hucc.hokudai.ac.jp/en/overview/ilcs/
+      status: 200
+    - url: https://www.lib.hokudai.ac.jp/support/huscap_doi/
+      status: 200
+    - url: https://www.open-ed.hokudai.ac.jp/%E6%9C%AA%E5%88%86%E9%A1%9E/31-3.html
+      status: 200
+    - url: https://www.global.hokudai.ac.jp/privacy-policy/
+      status: 200
+    - url: https://api.hokudai.ac.jp/
+      status: 0
+    - url: https://data.hokudai.ac.jp/
+      status: 0
+    - url: https://opendata.hokudai.ac.jp/
+      status: 0
+    - url: https://developer.hokudai.ac.jp/
+      status: 0
+    - url: https://status.hokudai.ac.jp/
+      status: 0
+    - url: https://www.hokudai.ac.jp/llms.txt
+      status: 404
+    - url: https://www.hokudai.ac.jp/.well-known/apis.json
+      status: 404
+    - url: https://www.hokudai.ac.jp/.well-known/security.txt
+      status: 404
+    - url: https://www.hokudai.ac.jp/.well-known/openid-configuration
+      status: 404
+    - url: https://api.github.com/orgs/hokudai
+      status: 404
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
