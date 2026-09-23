@@ -1,3 +1,9 @@
+generated: '2026-09-01'
+method: derived
+source: >-
+  Derived by API Evangelist from apis.yml and from live probes of Hokkaido University
+  surfaces on 2026-09-01. Hokkaido University publishes no plan, rate-limit or billing
+  document; this artifact records that absence rather than restating a provider claim.
 specification: API Commons Plans
 specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
@@ -12,15 +18,17 @@ tags:
 - University
 - Plans
 description: >-
-  Hokkaido University is a non-commercial higher-education institution; its APIs are not sold
-  as a commercial product. Public APIs (library, repository, course, and open-metadata
-  interfaces) are offered free of charge, typically for non-commercial use. Most
-  administrative and identity APIs are not openly self-service and require institutional
-  affiliation, credentials, or federation membership rather than a paid plan.
+  Hokkaido University is a national university corporation and does not sell API access.
+  No public REST API, developer portal or API gateway exists, so there is no commercial
+  plan to record. The surfaces that are open — HUSCAP's XML sitemap index and the
+  university web sitemaps — are free and unmetered. Everything else is gated by
+  institutional identity through the university's GakuNin-registered SAML identity
+  provider rather than by payment.
 notes: >-
-  No published per-seat or per-call commercial pricing. "Free / Open" reflects open
-  public endpoints; "Affiliation / Credentialed" reflects access gated by institutional
-  identity rather than payment.
+  "Free / Open" reflects the crawlable sitemap surfaces only. "Affiliation /
+  Credentialed" reflects access gated by SAML federation membership, not by a paid tier.
+  Probed 2026-09-01; no pricing page, plan page or billing document was found on any
+  hokudai.ac.jp host.
 sources:
 - https://raw.githubusercontent.com/api-evangelist/hokkaido/refs/heads/main/apis.yml
 plans:

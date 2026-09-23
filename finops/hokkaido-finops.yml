@@ -1,3 +1,9 @@
+generated: '2026-09-01'
+method: derived
+source: >-
+  Derived by API Evangelist from apis.yml and from live probes of Hokkaido University
+  surfaces on 2026-09-01. Hokkaido University publishes no plan, rate-limit or billing
+  document; this artifact records that absence rather than restating a provider claim.
 specification: FinOps Framework
 specificationVersion: '1.0'
 schema: https://www.finops.org/framework/

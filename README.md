@@ -72,47 +72,74 @@ Hokkaido University (北海道大学) is a national research university in Sappo
 ## Type
 
 - Index / Consumer / 3rd-Party
+- Class: university · Public Research University
 
 ## Tags
 
-Education, Higher Education, University, Research, Open Access, Institutional Repository, Japan
+Education, Higher Education, University, Japan, National University, Research, Open Access, Institutional Repository, Identity Federation, Shibboleth, Research Computing, Course Catalog, Persistent Identifiers
 
-## APIs
+## Surfaces
 
-- **HUSCAP Institutional Repository** — Open-access repository of journal articles, conference materials, dissertations, and research data with JPCOAR metadata and persistent identifiers (Handle, DOI). Docs: https://eprints.lib.hokudai.ac.jp/
-- **HUSCAP XML Sitemaps** — Public, robots.txt-permitted XML sitemap index for programmatic discovery of repository records. Docs: https://eprints.lib.hokudai.ac.jp/sitemap/sitemapindex.xml
+Every entry carries an operator, because for a university the question is never "is there a
+contract" but "who runs the thing the contract describes".
 
-## Plans
+**Institution-operated**
 
+- **Hokkaido University SAML 2.0 Identity Provider** — entityID `https://shib-idp01.iic.hokudai.ac.jp/idp/shibboleth`, scope `hokudai.ac.jp`, registered in GakuNin as PI0008JP since 2010-03-16. Live metadata: https://aidipigakunin2.oicte.hokudai.ac.jp/saml/saml2/idp/metadata.php
+- **HUSCAP XML Sitemaps** — https://eprints.lib.hokudai.ac.jp/sitemap/sitemapindex.xml
+- **Hokkaido University Web Sitemaps** — https://www.hokudai.ac.jp/sitemap.xml
+- **Syllabus Search (学務システム)** — https://gakumu.academic.hokudai.ac.jp/Portal/Public/Syllabus/SearchMain.aspx — public, web-only, no machine-readable export
+- **Interdisciplinary Large-scale Computing System (HUCC)** — https://www.hucc.hokudai.ac.jp/en/overview/ilcs/ — no public allocation or job API
+
+**Federation**
+
+- **GakuNin** (学術認証フェデレーション, operated by NII) — https://metadata.gakunin.nii.ac.jp/gakunin-metadata.xml — 650 entities, four of them Hokkaido's (one IdP, three SPs on hokudai.ac.jp hosts)
+
+**Registry memberships**
+
+- **Handle System prefix 2115** — https://hdl.handle.net/api/handles/0.NA/2115
+- **JaLC DOI prefix 10.14943** — https://api.japanlinkcenter.org/dois/10.14943/bfhhs.165.l129
+- **ROR** — https://ror.org/02e16g702
+- **Crossref member 5618** — Department of Mathematics only, prefix 10.14492
+
+## Artifacts
+
+- [authentication/hokkaido-saml-idp.yml](authentication/hokkaido-saml-idp.yml)
+- [conformance/hokkaido-conformance.yml](conformance/hokkaido-conformance.yml)
+- [json-ld/hokkaido-context.jsonld](json-ld/hokkaido-context.jsonld)
+- [security/hokkaido-domain-security.yml](security/hokkaido-domain-security.yml)
 - [plans/hokkaido-plans-pricing.yml](plans/hokkaido-plans-pricing.yml)
-
-## Rate Limits
-
 - [rate-limits/hokkaido-rate-limits.yml](rate-limits/hokkaido-rate-limits.yml)
-
-## FinOps
-
 - [finops/hokkaido-finops.yml](finops/hokkaido-finops.yml)
+- [review.yml](review.yml)
 
 ## Timestamps
 
 - Created: 2026-06-03
-- Modified: 2026-06-03
-
-## Common Properties
-
-- Website: https://www.global.hokudai.ac.jp/
-- LinkedIn: https://www.linkedin.com/school/hokkaidouni/
-- Plans: plans/hokkaido-plans-pricing.yml
-- Rate Limits: rate-limits/hokkaido-rate-limits.yml
-- FinOps: finops/hokkaido-finops.yml
-- Review: review.yml
+- Modified: 2026-09-01
 
 ## Notes
 
-- Verification caveats: All cataloged endpoints were probed live on 2026-06-03. The HUSCAP repository migrated to a new platform in December 2025; the legacy DSpace OAI-PMH endpoint (`/dspace-oai/request`) now returns 404 and no replacement OAI-PMH base URL was publicly documented at review time. The repository's existence and JPCOAR metadata compliance are confirmed, but a live OAI-PMH harvesting URL on the new system could not be verified.
-- Hokkaido University publishes no dedicated developer portal or documented public REST API. Institutional systems (ELMS LMS, syllabus search, researcher directory) are web UIs without documented programmatic interfaces.
-- The `github.com/hokkaido` GitHub organization is unrelated to the university and is intentionally not cataloged here.
+- **No public API.** Hokkaido University publishes no developer portal, no API gateway and no
+  documented public REST API. `api.`, `data.`, `opendata.`, `developer.` and `status.hokudai.ac.jp`
+  do not resolve; `/llms.txt`, `/.well-known/apis.json`, `/.well-known/security.txt` and
+  `/.well-known/openid-configuration` all return 404; and the WordPress REST API on the English
+  global site is explicitly disabled (`{"code":"rest_disabled"}`).
+- **The strongest surface is identity, not data.** The university's own Shibboleth/SAML identity
+  provider, registered in the Japanese national academic federation, is institution-operated,
+  machine-readable and first-party — its metadata is served from a hokudai.ac.jp host under a
+  certificate issued to `O=Hokkaido University`. The June 2026 profile missed it entirely.
+- **OAI-PMH remains the open regression.** IRDB entry 524 confirms HUSCAP is still harvested by
+  OAI-PMH, so a base URL exists, but the legacy DSpace endpoint has returned 404 since the
+  December 2025 platform migration and eighteen candidate paths on the replacement platform were
+  probed on 2026-09-01 without success. Publishing the endpoint is the single highest-value fix
+  available to the university.
+- **DOIs are JaLC, not DataCite or Crossref.** The library states this explicitly. `api.datacite.org`
+  returns zero clients for Hokkaido; the only Crossref membership is the Department of Mathematics.
+- No vendor contract is attributed to this institution, and none needed removing — this repository
+  has never carried an OpenAPI definition.
+- The `github.com/hokkaido` and `github.com/hokudai` GitHub organizations are not the university's
+  and are intentionally not cataloged here.
 
 ## Maintainers
 

@@ -3,7 +3,7 @@ name: Hokkaido University
 description: Hokkaido University public developer/API footprint review for APIs.json cataloging.
 url: https://raw.githubusercontent.com/api-evangelist/hokkaido/refs/heads/main/review.yml
 created: '2026-06-03'
-modified: '2026-06-03'
+modified: '2026-09-01'
 reviews:
   - date: '2026-06-03'
     rating: 2
@@ -43,3 +43,71 @@ reviews:
       - url: https://www.linkedin.com/school/hokkaidouni/
         status: 200
         note: Official LinkedIn school page.
+  - date: '2026-09-01'
+    rating: 3
+    summary: >-
+      University-pipeline re-profile. The operator axis was settled before anything was
+      saved, and the June 2026 profile turned out to have missed the university's
+      strongest institution-operated surface entirely: Hokkaido University runs its own
+      SAML 2.0 / Shibboleth identity provider, entityID
+      https://shib-idp01.iic.hokudai.ac.jp/idp/shibboleth, scope hokudai.ac.jp,
+      registered in the GakuNin national academic federation as PI0008JP since
+      2010-03-16, serving live metadata from its own host under a certificate issued to
+      O=Hokkaido University. Three further hokudai.ac.jp SAML service providers are
+      registered alongside it. Persistent-identifier registrations were verified from
+      the registries themselves: Handle naming authority 2115 (administered from
+      lib.hokudai.ac.jp, updated 2024-06-24) and JaLC DOI prefix 10.14943 (confirmed via
+      the DOI RA resolver and the JaLC API, which names Hokkaido University as
+      publisher). The university is not a DataCite member and its only Crossref
+      membership is departmental. The OAI-PMH regression first noted in June 2026 was
+      re-tested and stands: eighteen candidate paths on the post-migration platform all
+      404, while IRDB entry 524 confirms the repository is still harvested, so an
+      undocumented endpoint exists. No vendor contract was attributed to the
+      institution, and none needed removing — this repo has never carried an OpenAPI.
+    endpoints:
+      - url: https://metadata.gakunin.nii.ac.jp/gakunin-metadata.xml
+        status: 200
+        note: GakuNin aggregate, 650 entities, four of them on hokudai.ac.jp hosts.
+      - url: https://aidipigakunin2.oicte.hokudai.ac.jp/saml/saml2/idp/metadata.php
+        status: 200
+        note: First-party SAML 2.0 IdP metadata served from a Hokkaido University host.
+      - url: https://aidipigakunin2.oicte.hokudai.ac.jp/saml/saml2/idp/SSOService.php
+        status: 200
+        note: Advertised SingleSignOnService endpoint answers; the IdP is live, not merely registered.
+      - url: https://hdl.handle.net/api/handles/0.NA/2115
+        status: 200
+        note: Handle naming authority 2115, admin contacts at lib.hokudai.ac.jp.
+      - url: https://api.japanlinkcenter.org/dois/10.14943/bfhhs.165.l129
+        status: 200
+        note: JaLC API returns publisher_list "Hokkaido University" for prefix 10.14943.
+      - url: https://api.crossref.org/members/5618
+        status: 200
+        note: Department of Mathematics, prefix 10.14492, 1820 DOIs. Departmental, not institutional.
+      - url: https://api.datacite.org/clients?query=hokkaido
+        status: 200
+        note: meta.total 0 — no DataCite client. The library states JaLC-only explicitly.
+      - url: https://gakumu.academic.hokudai.ac.jp/Portal/Public/Syllabus/SearchMain.aspx
+        status: 200
+        note: Public syllabus search, institution-operated, web-only, no machine-readable export.
+      - url: https://syllabus01.academic.hokudai.ac.jp/syllabi/public/syllabus/sylsearch.aspx
+        status: 0
+        note: Superseded syllabus host no longer resolves.
+      - url: https://www.global.hokudai.ac.jp/wp-json/
+        status: 500
+        note: 'WordPress REST API explicitly disabled: {"code":"rest_disabled"}.'
+      - url: https://eprints.lib.hokudai.ac.jp/repo/huscap/all/oai?verb=Identify
+        status: 404
+        note: One of eighteen OAI-PMH candidate paths probed on the post-migration platform; all 404.
+      - url: https://irdb.nii.ac.jp/repositorylist?page=10
+        status: 200
+        note: IRDB entry 524 lists HUSCAP with prefix 10.14943; IRDB harvests only by OAI-PMH.
+      - url: https://api.hokudai.ac.jp/
+        status: 0
+        note: Negative probe. No API gateway.
+      - url: https://developer.hokudai.ac.jp/
+        status: 0
+        note: Negative probe. No developer portal.
+      - url: https://www.hokudai.ac.jp/.well-known/security.txt
+        status: 404
+        note: Negative probe. No RFC 9116 security contact.
+

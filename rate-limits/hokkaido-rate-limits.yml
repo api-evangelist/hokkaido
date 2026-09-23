@@ -1,3 +1,9 @@
+generated: '2026-09-01'
+method: derived
+source: >-
+  Derived by API Evangelist from apis.yml and from live probes of Hokkaido University
+  surfaces on 2026-09-01. Hokkaido University publishes no plan, rate-limit or billing
+  document; this artifact records that absence rather than restating a provider claim.
 specification: API Commons Rate Limits
 specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
@@ -12,11 +18,14 @@ tags:
 - University
 - Rate Limiting
 description: >-
-  Hokkaido University does not publish a unified public rate-limit table across its APIs. Open
-  metadata and harvesting endpoints (OAI-PMH, IIIF, library) may throttle large-scale
-  or automated harvesting; clients should harvest politely, honor Retry-After, and
-  contact the relevant service for bulk access.
-notes: Confirm per-service limits with each API's documentation; harvest responsibly.
+  Hokkaido University publishes no rate-limit documentation of any kind. The only
+  machine-readable surfaces it operates are XML sitemaps and SAML metadata, and neither
+  carries a documented limit. HUSCAP's robots.txt does state a crawl policy — Crawl-delay:
+  10, Disallow: / with explicit Allow for /repo/huscap/all/ and /sitemap/ — and that is
+  the closest thing to a published limit the institution offers. Honor it.
+notes: >-
+  Probed 2026-09-01. No 429 policy, Retry-After documentation or per-service limit table
+  was found. The robots.txt crawl-delay is the operative constraint.
 sources:
 - https://raw.githubusercontent.com/api-evangelist/hokkaido/refs/heads/main/apis.yml
 responseCodes:
