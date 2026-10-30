@@ -1,4 +1,4 @@
-# Hokkaido University (hokkaido)
+# Hokkaido University
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,83 +64,118 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Hokkaido University (北海道大学) is a national research university in Sapporo, Japan, founded in 1876 as Sapporo Agricultural College and ranked #173 in the QS World University Rankings 2025. This repository is an [APIs.json](http://apisjson.org) provider profile cataloging the university's public, machine-readable developer and API footprint, which is centered on its open-access scholarly infrastructure.
+Hokkaido University (北海道大学) is a national research university in Sapporo, Japan, founded in 1876 as Sapporo Agricultural College, a member of Japan's Designated National University group and ranked #173 in the QS World University Rankings 2025. It operates 12 undergraduate schools, 21 graduate schools and numerous research institutes. Its public programmable footprint is small and honest: the university publishes no developer portal, no API gateway and no documented public REST API — api., data., opendata., developer. and status.hokudai.ac.jp all fail to resolve, and the WordPress REST API on its English site is explicitly disabled. What it does operate, and what this profile is built on, is scholarly identity infrastructure. It runs its own SAML 2.0 / Shibboleth identity provider registered in GakuNin, the Japanese national academic access federation; it holds Handle System prefix 2115 and JaLC DOI prefix 10.14943 for the HUSCAP institutional repository; and it publishes crawlable XML sitemaps for both HUSCAP and its main web estate. HUSCAP's OAI-PMH endpoint is the one real regression: IRDB still harvests the repository by OAI-PMH, but no base URL has been publicly documented since the December 2025 platform migration and eighteen candidate paths were probed unsuccessfully.
 
-- APIs.json: https://raw.githubusercontent.com/api-evangelist/hokkaido/refs/heads/main/apis.yml
-- Run with Naftiko: https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=hokkaido-api-evangelist&utm_content=repo
+**Areas:** Education · Higher Education · University · Japan · National University · Research · Open Access · Institutional Repository · Identity Federation · Shibboleth · Research Computing · Course Catalog
 
-## Type
+## Hokkaido University on APIs.io
 
-- Index / Consumer / 3rd-Party
-- Class: university · Public Research University
+Everything profiled for Hokkaido University is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/hokkaido/](https://apis.io/providers/hokkaido/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (10)
 
-Education, Higher Education, University, Japan, National University, Research, Open Access, Institutional Repository, Identity Federation, Shibboleth, Research Computing, Course Catalog, Persistent Identifiers
+- [Hokkaido University SAML 2.0 Identity Provider](https://apis.io/apis/hokkaido/saml-idp/) — Hokkaido University's own Shibboleth/SAML 2.0 identity provider, entityID https://shib-idp01.iic.hokudai.ac.jp/idp/shibboleth, scope hokudai.ac.jp,…
+- [GakuNin Academic Access Management Federation](https://apis.io/apis/hokkaido/gakunin/) — Membership of GakuNin (学術認証フェデレーション), the Japanese national academic identity federation operated by the National Institute of Informatics. The aggregate at…
+- [HUSCAP XML Sitemaps](https://apis.io/apis/hokkaido/huscap-sitemap/) — Publicly crawlable XML sitemap index for HUSCAP, the Hokkaido University Collection of Scholarly and Academic Papers, providing a machine-readable list of…
+- [Hokkaido University Web Sitemaps](https://apis.io/apis/hokkaido/web-sitemaps/) — XML sitemaps for the university's two public web estates — the 2.4 MB sitemap.xml on the Japanese site and the WordPress core sitemap index on the English…
+- [Handle System Prefix 2115](https://apis.io/apis/hokkaido/handle-2115/) — Hokkaido University Library holds Handle System naming authority prefix 2115, which mints the persistent identifiers on every HUSCAP record…
+- [JaLC DOI Prefix 10.14943](https://apis.io/apis/hokkaido/jalc-doi-10-14943/) — Hokkaido University registers DOIs through JaLC, the Japan Link Center, under prefix 10.14943. Confirmed from the DOI Registration Agency resolver…
+- [ROR Registry Record](https://apis.io/apis/hokkaido/ror/) — Research Organization Registry record https://ror.org/02e16g702, types education and funder, established 1876, located Sapporo, Japan. Carries the…
+- [Crossref Member 5618 — Department of Mathematics](https://apis.io/apis/hokkaido/crossref-5618/) — Crossref membership held at department level, not institution level. Member 5618, "Department of Mathematics, Hokkaido University", prefix 10.14492, 1,820…
+- [Hokkaido University Syllabus Search (学務システム)](https://apis.io/apis/hokkaido/syllabus/) — Public course catalog and syllabus search, institution-operated on the gakumu.academic.hokudai.ac.jp host. Live and open to the public, but web-only — an…
+- [Interdisciplinary Large-scale Computing System (HUCC)](https://apis.io/apis/hokkaido/hucc/) — The Information Initiative Center's supercomputer and research cloud service — Grand Chariot 2 and the research cloud system — documented in Japanese and…
 
-## Surfaces
+### Published properties
 
-Every entry carries an operator, because for a university the question is never "is there a
-contract" but "who runs the thing the contract describes".
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-**Institution-operated**
+#### JSON-LD (1)
 
-- **Hokkaido University SAML 2.0 Identity Provider** — entityID `https://shib-idp01.iic.hokudai.ac.jp/idp/shibboleth`, scope `hokudai.ac.jp`, registered in GakuNin as PI0008JP since 2010-03-16. Live metadata: https://aidipigakunin2.oicte.hokudai.ac.jp/saml/saml2/idp/metadata.php
-- **HUSCAP XML Sitemaps** — https://eprints.lib.hokudai.ac.jp/sitemap/sitemapindex.xml
-- **Hokkaido University Web Sitemaps** — https://www.hokudai.ac.jp/sitemap.xml
-- **Syllabus Search (学務システム)** — https://gakumu.academic.hokudai.ac.jp/Portal/Public/Syllabus/SearchMain.aspx — public, web-only, no machine-readable export
-- **Interdisciplinary Large-scale Computing System (HUCC)** — https://www.hucc.hokudai.ac.jp/en/overview/ilcs/ — no public allocation or job API
+Linked-data contexts for the provider's vocabulary.
 
-**Federation**
+- [Hokkaido Context](https://apis.io/jsonld/hokkaido/hokkaido-context/)
 
-- **GakuNin** (学術認証フェデレーション, operated by NII) — https://metadata.gakunin.nii.ac.jp/gakunin-metadata.xml — 650 entities, four of them Hokkaido's (one IdP, three SPs on hokudai.ac.jp hosts)
+#### Security (1)
 
-**Registry memberships**
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Handle System prefix 2115** — https://hdl.handle.net/api/handles/0.NA/2115
-- **JaLC DOI prefix 10.14943** — https://api.japanlinkcenter.org/dois/10.14943/bfhhs.165.l129
-- **ROR** — https://ror.org/02e16g702
-- **Crossref member 5618** — Department of Mathematics only, prefix 10.14492
+- [Hokkaido Domain Security](https://apis.io/security/hokkaido/hokkaido-domain-security/)
 
-## Artifacts
+#### Plans and pricing (1)
 
-- [authentication/hokkaido-saml-idp.yml](authentication/hokkaido-saml-idp.yml)
-- [conformance/hokkaido-conformance.yml](conformance/hokkaido-conformance.yml)
-- [json-ld/hokkaido-context.jsonld](json-ld/hokkaido-context.jsonld)
-- [security/hokkaido-domain-security.yml](security/hokkaido-domain-security.yml)
-- [plans/hokkaido-plans-pricing.yml](plans/hokkaido-plans-pricing.yml)
-- [rate-limits/hokkaido-rate-limits.yml](rate-limits/hokkaido-rate-limits.yml)
-- [finops/hokkaido-finops.yml](finops/hokkaido-finops.yml)
-- [review.yml](review.yml)
+Published plans, tiers and prices.
 
-## Timestamps
+- [Hokkaido Plans Pricing](https://apis.io/plans/hokkaido/hokkaido-plans-pricing/)
 
-- Created: 2026-06-03
-- Modified: 2026-09-01
+#### Rate limits (1)
 
-## Notes
+Published request limits.
 
-- **No public API.** Hokkaido University publishes no developer portal, no API gateway and no
-  documented public REST API. `api.`, `data.`, `opendata.`, `developer.` and `status.hokudai.ac.jp`
-  do not resolve; `/llms.txt`, `/.well-known/apis.json`, `/.well-known/security.txt` and
-  `/.well-known/openid-configuration` all return 404; and the WordPress REST API on the English
-  global site is explicitly disabled (`{"code":"rest_disabled"}`).
-- **The strongest surface is identity, not data.** The university's own Shibboleth/SAML identity
-  provider, registered in the Japanese national academic federation, is institution-operated,
-  machine-readable and first-party — its metadata is served from a hokudai.ac.jp host under a
-  certificate issued to `O=Hokkaido University`. The June 2026 profile missed it entirely.
-- **OAI-PMH remains the open regression.** IRDB entry 524 confirms HUSCAP is still harvested by
-  OAI-PMH, so a base URL exists, but the legacy DSpace endpoint has returned 404 since the
-  December 2025 platform migration and eighteen candidate paths on the replacement platform were
-  probed on 2026-09-01 without success. Publishing the endpoint is the single highest-value fix
-  available to the university.
-- **DOIs are JaLC, not DataCite or Crossref.** The library states this explicitly. `api.datacite.org`
-  returns zero clients for Hokkaido; the only Crossref membership is the Department of Mathematics.
-- No vendor contract is attributed to this institution, and none needed removing — this repository
-  has never carried an OpenAPI definition.
-- The `github.com/hokkaido` and `github.com/hokudai` GitHub organizations are not the university's
-  and are intentionally not cataloged here.
+- [Hokkaido Rate Limits](https://apis.io/rate-limits/hokkaido/hokkaido-rate-limits/)
 
-## Maintainers
+#### FinOps (1)
 
-- Kin Lane — kin@apievangelist.com
+What the API costs to run, by operation.
+
+- [Hokkaido Finops](https://apis.io/finops/hokkaido/hokkaido-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.hokudai.ac.jp/)
+- [Support](https://www.lib.hokudai.ac.jp/support/huscap/)
+- [Privacy policy](https://www.global.hokudai.ac.jp/privacy-policy/)
+
+## API Evangelist rating
+
+**Kin Score 20.0** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 62.5 |
+| Contract quality | 17.3 |
+| Contract governance | 0.0 |
+| Operational transparency | 5.3 |
+| Developer ergonomics | 26.2 |
+| Access clarity | 15.8 |
+
+**Agent readiness 3.1** — human-only
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 20.6** — Education & Research
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/hokkaido/](https://apis.io/providers/hokkaido/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Hokkaido University: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/hokkaido/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
